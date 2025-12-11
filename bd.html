@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日祝福 | 给远方的朋友</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f0ff;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 200, 239, 0.2) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(200, 220, 255, 0.2) 0%, transparent 20%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 118, 140, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .birthday-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h2 {
+            color: #ff6b93;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffebf3;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            font-size: 1.5rem;
+        }
+        
+        .message-card {
+            flex: 2;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+        }
+        
+        .friend-name {
+            color: #ff6b93;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .photo-frame {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #ff9cb8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .interactive-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .interactive-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .cake-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .cake {
+            font-size: 5rem;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.2s;
+            margin-bottom: 10px;
+        }
+        
+        .cake:hover {
+            transform: scale(1.1);
+        }
+        
+        .candle {
+            display: inline-block;
+            font-size: 2rem;
+            color: #ff9d00;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .candle.lit {
+            animation: flicker 0.5s infinite alternate;
+            color: #ff4500;
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        .wish-btn {
+            background: linear-gradient(to right, #ff7eb3, #ff758c);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 20px auto 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 118, 140, 0.4);
+        }
+        
+        .wish-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 118, 140, 0.6);
+        }
+        
+        .wish-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .wish-message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff9fc;
+            border-radius: 10px;
+            border-left: 5px solid #ff7eb3;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .counter {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff6b93;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .counter-label {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-size: 1rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+        
+        .distance-note {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #5dade2;
+        }
+        
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 147, 0.2);
+            font-size: 20px;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .card, .interactive-card {
+                min-width: 100%;
+            }
+            
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            .photo-frame {
+                height: 100px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 漂浮的心形背景 -->
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="birthday-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <h1>生日快乐！<span class="friend-name" id="friendName">亲爱的朋友</span></h1>
+                <p>虽然我们相隔千里，但我的心意可以跨越山海，为你送上最真挚的祝福！</p>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="card message-card">
+                <h2><i class="fas fa-envelope"></i> 给远方朋友的生日祝福</h2>
+                <div class="message">
+                    <p>亲爱的 <span class="friend-name" id="friendName2">朋友</span>，</p>
+                    <p>在这个特别的日子里，虽然不能亲自为你庆祝生日，但我想通过这个网页向你传达我最诚挚的祝福！</p>
+                    <p>愿你的生日充满欢笑和喜悦，愿你的新一岁里，健康、快乐、成功与平安常伴左右。</p>
+                    <p>距离不会冲淡我们的友谊，反而让我们更加珍惜彼此。希望不久的将来，我们可以再次相聚，补上这份生日的拥抱！</p>
+                    <p>祝你生日快乐，心想事成，万事如意！</p>
+                    <p style="text-align: right; margin-top: 20px;">—— 你远方的朋友</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-images"></i> 美好回忆</h2>
+                <p>虽然不能与你共度此刻，但我们可以一起回忆那些美好的时光（模拟照片）：</p>
+                
+                <div class="photo-gallery">
+                    <div class="photo-frame" onclick="showPhoto(1)">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <div class="photo-frame" onclick="showPhoto(2)">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="photo-frame" onclick="showPhoto(3)">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <div class="photo-frame" onclick="showPhoto(4)">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="photo-frame" onclick="showPhoto(5)">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="photo-frame" onclick="showPhoto(6)">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="distance-note">
+                    <h3><i class="fas fa-globe-americas"></i> 距离不会阻隔祝福</h3>
+                    <p>虽然我们相隔 <span id="distance">遥远</span>，但现代科技让我的祝福可以瞬间传达到你身边。希望这个小小的网页能带给你生日的惊喜和温暖！</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="interactive-section">
+            <div class="interactive-card">
+                <h2><i class="fas fa-cake-candles"></i> 生日蛋糕</h2>
+                <p>点击蜡烛点亮它们，然后许个愿吧！</p>
+                
+                <div class="cake-container">
+                    <div class="cake" onclick="toggleCandles()">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div id="candles">
+                        <!-- 蜡烛将通过JS动态生成 -->
+                    </div>
+                    <p id="cakeMessage">点击蛋糕点燃蜡烛</p>
+                </div>
+                
+                <button class="wish-btn" onclick="showBirthdayWish()">
+                    <i class="fas fa-gift"></i> 点击接收生日祝福
+                </button>
+                
+                <div class="wish-message" id="wishMessage">
+                    <h3><i class="fasfa-sparkles"></i> 专属生日祝福送达！</h3>
+                    <p>愿你今后的每一天都充满阳光和欢笑，愿你的所有梦想都能实现，愿幸福永远伴随你！生日快乐！🎉🎂</p>
+                </div>
+            </div>
+            
+            <div class="interactive-card">
+                <h2><i class="fas fa-heart"></i> 友谊计数器</h2>
+                <p>我们的友谊已经持续了：</p>
+                <div class="counter" id="friendshipCounter">0</div>
+                <div class="counter-label">天数</div>
+                
+                <p style="margin-top: 30px;">点击下面的心形，为我们的友谊加油：</p>
+                <div style="text-align: center; margin-top: 20px;">
+                    <i class="fas fa-heart" id="friendshipHeart" style="font-size: 4rem; color: #ffcccc; cursor: pointer; transition: all 0.3s;"></i>
+                    <p id="heartMessage" style="margin-top: 10px;">点击心形增加友谊值</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>这份生日祝福通过互联网穿越千里送到你身边 | 制作于 <span id="currentDate"></span></p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                <i class="fas fa-share-alt"></i> 你可以分享这个网页给你的朋友，让他们也送上祝福！
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 设置朋友姓名
+        const friendName = prompt("请输入你朋友的姓名：", "小明");
+        if (friendName) {
+            document.getElementById('friendName').textContent = friendName;
+            document.getElementById('friendName2').textContent = friendName;
+        }
+        
+        // 设置距离
+        const distanceOptions = ["千里之外", "不同城市", "不同国家", "大洋彼岸"];
+        const randomDistance = distanceOptions[Math.floor(Math.random() * distanceOptions.length)];
+        document.getElementById('distance').textContent = randomDistance;
+        
+        // 设置当前日期
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('zh-CN', options);
+        
+        // 生成随机漂浮心形
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.color = `rgba(255, ${Math.floor(Math.random() * 100 + 100)}, ${Math.floor(Math.random() * 100 + 150)}, ${Math.random() * 0.3 + 0.1})`;
+                container.appendChild(heart);
+            }
+        }
+        
+        // 初始化蜡烛
+        function initCandles() {
+            const candlesContainer = document.getElementById('candles');
+            const candleCount = friendName ? friendName.length : 5;
+            
+            for (let i = 0; i < Math.min(candleCount, 10); i++) {
+                const candle = document.createElement('div');
+                candle.classList.add('candle');
+                candle.innerHTML = '<i class="fas fa-fire-flame-curved"></i>';
+                candle.dataset.lit = "false";
+                candlesContainer.appendChild(candle);
+            }
+        }
+        
+        // 切换蜡烛状态
+        function toggleCandles() {
+            const candles = document.querySelectorAll('.candle');
+            let allLit = true;
+            
+            candles.forEach(candle => {
+                if (candle.dataset.lit === "false") {
+                    allLit = false;
+                }
+            });
+            
+            if (allLit) {
+                // 如果所有蜡烛都已点亮，则吹灭它们
+                candles.forEach(candle => {
+                    candle.classList.remove('lit');
+                    candle.dataset.lit = "false";
+                });
+                document.getElementById('cakeMessage').textContent = "蜡烛已吹灭，再次点击点燃";
+            } else {
+                // 否则点亮所有蜡烛
+                candles.forEach(candle => {
+                    candle.classList.add('lit');
+                    candle.dataset.lit = "true";
+                });
+                document.getElementById('cakeMessage').textContent = "蜡烛已点燃！现在许个愿吧！";
+            }
+        }
+        
+        // 显示生日祝福
+        function showBirthdayWish() {
+            const wishMessage = document.getElementById('wishMessage');
+            wishMessage.style.display = 'block';
+            
+            // 滚动到祝福区域
+            wishMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // 播放庆祝动画
+            celebrate();
+        }
+        
+        // 庆祝动画
+        function celebrate() {
+            const colors = ['#ff6b93', '#ff9d00', '#5dade2', '#9b59b6', '#2ecc71'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.zIndex = '9999';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.innerHTML = ['🎉', '🎊', '🎂', '🥳', '🎈', '🎁'][Math.floor(Math.random() * 6)];
+                    document.body.appendChild(confetti);
+                    
+                    // 动画
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 2000 + 1000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => confetti.remove();
+                }, i * 100);
+            }
+        }
+        
+        // 照片点击事件
+        function showPhoto(photoNum) {
+            const messages = [
+                "记得我们一起爬山的日子吗？那是多么美好的时光！",
+                "那次我们一起尝试新餐厅，美食让我们更加亲近。",
+                "你的笑容总是能感染周围的人，包括我！",
+                "你送的礼物我一直珍藏着，每次看到都会想起你。",
+                "我们共享的音乐品味，让我们的友谊更加深厚。",
+                "你就像一颗星星，在我生活中闪耀着独特的光芒。"
+            ];
+            
+            alert(messages[photoNum - 1]);
+        }
+        
+        // 友谊计数器
+        let friendshipDays = Math.floor(Math.random() * 1000) + 500;
+        let friendshipValue = 50;
+        
+        document.getElementById('friendshipCounter').textContent = friendshipDays;
+        
+        // 心形点击事件
+        document.getElementById('friendshipHeart').addEventListener('click', function() {
+            friendshipValue += 5;
+            friendshipDays += 1;
+            
+            document.getElementById('friendshipCounter').textContent = friendshipDays;
+            document.getElementById('heartMessage').textContent = `友谊值 +5！当前友谊值：${friendshipValue}`;
+            
+            // 改变心形颜色和大小
+            const heart = this;
+            heart.style.color = `rgb(255, ${100 - friendshipValue/2}, ${100 - friendshipValue/2})`;
+            heart.style.fontSize = (4 + friendshipValue/50) + 'rem';
+            
+            // 添加动画效果
+            heart.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                heart.style.transform = 'scale(1)';
+            }, 200);
+            
+            // 如果友谊值达到100，显示特殊消息
+            if (friendshipValue >= 100) {
+                document.getElementById('heartMessage').innerHTML = `🎉 友谊满分！我们的友谊坚不可摧！`;
+                celebrate();
+            }
+        });
+        
+        // 初始化页面
+        window.onload = function() {
+            createHearts();
+            initCandles();
+            
+            // 显示加载完成的消息
+            setTimeout(() => {
+                document.getElementById('wishMessage').innerHTML += 
+                    `<p style="margin-top: 10px; font-style: italic;">网页已加载完成，祝${friendName || '你'}生日快乐！</p>`;
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
