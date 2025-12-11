@@ -1,390 +1,164 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>生日祝福</title>
     <style>
-        * {
+        body { 
+            background: #2c3e50; 
+            color: #ecf0f1; 
+            text-align: center; 
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+            transition: background 2s;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
         
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        .light { 
+            background: #ecf0f1; 
+            color: #2c3e50; 
         }
         
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 40px 30px;
-            text-align: center;
+        h1 { 
+            font-size: 3em; 
+            margin-bottom: 20px; 
         }
         
-        h1 {
-            color: #2d3436;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: 600;
+        .quote { 
+            font-size: 1.2em; 
+            margin: 30px auto; 
+            max-width: 500px; 
+            font-style: italic; 
         }
         
-        .subtitle {
-            color: #636e72;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-        
-        .cake-container {
-            margin: 30px 0;
-            position: relative;
-            height: 150px;
-        }
-        
-        .cake {
-            width: 120px;
-            height: 60px;
-            background-color: #dfe6e9;
-            border-radius: 8px 8px 0 0;
-            margin: 0 auto;
+        .cake { 
+            width: 150px; 
+            height: 100px; 
+            background: #e67e22; 
+            border-radius: 10px 10px 0 0; 
+            margin: 40px auto 0;
             position: relative;
         }
         
         .cake-top {
-            width: 140px;
+            width: 170px;
             height: 30px;
-            background-color: #b2bec3;
-            border-radius: 8px;
-            margin: 0 auto;
+            background: #d35400;
+            border-radius: 50%;
             position: relative;
             top: -15px;
+            left: -10px;
         }
         
         .candle {
-            width: 8px;
-            height: 30px;
-            background-color: #0984e3;
-            margin: 0 auto;
-            position: relative;
-            top: -40px;
-            border-radius: 4px;
+            width: 10px;
+            height: 40px;
+            background: #7f8c8d;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            margin-left: -5px;
+            transition: background 1s;
         }
+        
+        .candle.lit { background: #f1c40f; }
         
         .flame {
-            width: 16px;
-            height: 24px;
-            background-color: #ff9f43;
+            width: 20px;
+            height: 30px;
+            background: #f39c12;
             border-radius: 50% 50% 20% 20%;
-            margin: 0 auto;
-            position: relative;
-            top: -70px;
-            opacity: 0.9;
-            animation: flicker 1.5s infinite alternate;
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            margin-left: -10px;
+            opacity: 0;
+            transition: opacity 1s;
+            box-shadow: 0 0 20px #f1c40f;
         }
         
-        @keyframes flicker {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.1, 0.9); opacity: 1; }
-        }
-        
-        .message {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 30px 0;
-            border-left: 4px solid #0984e3;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: #2d3436;
-        }
-        
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+        .flame.show { opacity: 1; }
         
         button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .primary-btn {
-            background-color: #0984e3;
+            padding: 12px 30px;
+            background: #3498db;
             color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 30px;
         }
         
-        .primary-btn:hover {
-            background-color: #0770c4;
-            transform: translateY(-2px);
-        }
-        
-        .secondary-btn {
-            background-color: #f1f2f6;
-            color: #2d3436;
-        }
-        
-        .secondary-btn:hover {
-            background-color: #e4e6ed;
-            transform: translateY(-2px);
-        }
-        
-        .counter {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f1f2f6;
-            border-radius: 50px;
-            padding: 8px 16px;
-            margin-top: 25px;
-            font-size: 0.95rem;
-        }
-        
-        .counter span {
-            font-weight: 600;
-            color: #0984e3;
-            margin-left: 5px;
-        }
+        button:hover { background: #2980b9; }
         
         .balloon {
             position: absolute;
             width: 40px;
-            height: 50px;
+            height: 60px;
             border-radius: 50%;
-            z-index: -1;
-            opacity: 0.7;
-        }
-        
-        .balloon-1 {
-            background-color: #6c5ce7;
-            top: 20px;
-            left: 30px;
-            animation: float 8s infinite ease-in-out;
-        }
-        
-        .balloon-2 {
-            background-color: #00b894;
-            top: 40px;
-            right: 40px;
-            animation: float 10s infinite ease-in-out 1s;
-        }
-        
-        .balloon-3 {
-            background-color: #fd79a8;
-            bottom: 30px;
-            left: 50px;
-            animation: float 9s infinite ease-in-out 0.5s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .confetti {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-            z-index: 1000;
-            pointer-events: none;
+            bottom: -100px;
             opacity: 0;
+            transition: opacity 2s;
         }
         
-        .footer {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: #636e72;
-        }
-        
-        @media (max-width: 500px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 1.7rem;
-            }
-            
-            .btn-group {
-                flex-direction: column;
-            }
-            
-            button {
-                width: 100%;
-            }
-        }
+        .show-deco { opacity: 1 !important; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>生日快乐</h1>
-        <div class="subtitle">送上远方的祝福</div>
-        
-        <div class="cake-container">
-            <div class="balloon balloon-1"></div>
-            <div class="balloon balloon-2"></div>
-            <div class="balloon balloon-3"></div>
-            
-            <div class="cake"></div>
+<body id="pageBody">
+    <h1>小明 · 生日快乐</h1>
+    <div class="quote">愿时光清浅，许你安然；愿岁月静好，不负流年</div>
+    
+    <div style="position: relative; margin: 50px auto; width: 200px;">
+        <div class="cake">
             <div class="cake-top"></div>
-            <div class="candle"></div>
-            <div class="flame"></div>
-        </div>
-        
-        <div class="message">
-            祝你生日快乐！愿新的一岁充满美好和惊喜。
-        </div>
-        
-        <div class="btn-group">
-            <button class="primary-btn" id="sendWish">发送祝福</button>
-            <button class="secondary-btn" id="celebrate">庆祝一下</button>
-        </div>
-        
-        <div class="counter">
-            已收到 <span id="wishCount">0</span> 份祝福
-        </div>
-        
-        <div class="footer">
-            虽隔千里，祝福直达
+            <div class="candle" id="candle"></div>
+            <div class="flame" id="flame"></div>
         </div>
     </div>
-
+    
+    <button onclick="lightCandle()">点亮蜡烛</button>
+    
+    <div id="decorations"></div>
+    
     <script>
-        // 获取DOM元素
-        const sendWishBtn = document.getElementById('sendWish');
-        const celebrateBtn = document.getElementById('celebrate');
-        const wishCountEl = document.getElementById('wishCount');
-        const cakeContainer = document.querySelector('.cake-container');
-        const flame = document.querySelector('.flame');
-        
-        // 初始化祝福计数
-        let wishCount = 0;
-        
-        // 发送祝福按钮功能
-        sendWishBtn.addEventListener('click', function() {
-            wishCount++;
-            wishCountEl.textContent = wishCount;
+        function lightCandle() {
+            // 改变页面背景
+            document.getElementById("pageBody").classList.add("light");
             
-            // 简单按钮反馈
-            this.textContent = '祝福已发送';
-            this.style.backgroundColor = '#00b894';
+            // 点亮蜡烛
+            document.getElementById("candle").classList.add("lit");
+            document.getElementById("flame").classList.add("show");
             
-            // 3秒后恢复按钮
-            setTimeout(() => {
-                this.textContent = '发送祝福';
-                this.style.backgroundColor = '#0984e3';
-            }, 1500);
+            // 隐藏按钮
+            event.target.style.display = "none";
             
-            // 创建飘出的爱心
-            createHeart();
-        });
-        
-        // 庆祝按钮功能
-        celebrateBtn.addEventListener('click', function() {
-            // 创建彩色纸屑
-            createConfetti();
-            
-            // 蜡烛闪烁效果
-            flame.style.animation = 'none';
-            setTimeout(() => {
-                flame.style.animation = 'flicker 1.5s infinite alternate';
-            }, 100);
-            
-            // 蛋糕轻微弹跳
-            cakeContainer.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                cakeContainer.style.transform = 'translateY(0)';
-            }, 300);
-        });
-        
-        // 创建飘出的爱心
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.style.position = 'fixed';
-            heart.style.fontSize = '24px';
-            heart.style.zIndex = '1000';
-            heart.style.left = Math.random() * 80 + 10 + 'vw';
-            heart.style.top = '100vh';
-            heart.style.opacity = '0.9';
-            heart.style.transform = 'translateY(0)';
-            heart.style.pointerEvents = 'none';
-            heart.style.transition = 'all 1.5s ease-out';
-            
-            document.body.appendChild(heart);
-            
-            // 触发动画
-            setTimeout(() => {
-                heart.style.top = '-50px';
-                heart.style.opacity = '0';
-            }, 10);
-            
-            // 移除元素
-            setTimeout(() => {
-                heart.remove();
-            }, 1600);
+            // 添加气球
+            addDecorations();
         }
         
-        // 创建彩色纸屑
-        function createConfetti() {
-            const colors = ['#0984e3', '#00b894', '#6c5ce7', '#fd79a8', '#fdcb6e'];
+        function addDecorations() {
+            const colors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6"];
+            const container = document.getElementById("decorations");
             
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = Math.random() * 100 + 'vh';
-                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+            for(let i = 0; i < 8; i++) {
+                const balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.style.background = colors[i % colors.length];
+                balloon.style.left = Math.random() * 90 + "%";
+                balloon.style.transition = "bottom 4s " + (i * 0.3) + "s, opacity 2s";
+                container.appendChild(balloon);
                 
-                document.body.appendChild(confetti);
-                
-                // 显示纸屑
+                // 触发动画
                 setTimeout(() => {
-                    confetti.style.opacity = '0.9';
-                    confetti.style.transform = `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`;
-                    confetti.style.transition = 'all 1.5s ease-out';
-                }, 10);
-                
-                // 移除纸屑
-                setTimeout(() => {
-                    confetti.remove();
-                }, 1600);
+                    balloon.classList.add("show-deco");
+                    balloon.style.bottom = "100%";
+                }, 100);
             }
         }
-        
-        // 初始祝福计数动画
-        setTimeout(() => {
-            let count = 0;
-            const targetCount = Math.floor(Math.random() * 5) + 3;
-            const countInterval = setInterval(() => {
-                count++;
-                wishCountEl.textContent = count;
-                wishCount = count;
-                
-                if (count >= targetCount) {
-                    clearInterval(countInterval);
-                }
-            }, 200);
-        }, 1000);
     </script>
 </body>
 </html>
+</html>
+
